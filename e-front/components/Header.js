@@ -1,35 +1,37 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Center from "./Center";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
+
+const Stylesheader = styled.header`
+    background-color: #222;
+`;
+
+const Logo = styled(Link)`
+    color: #fff;
+    text-decoration: none;
+`;
+
+const Wrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+`;
+
+const StyledNav = styled.nav`
+    display: flex;
+    gap: 15px;
+`;
+
+const NavLink = styled(Link)`
+    color: #aaa;
+    text-decoration: none;
+`;
 export default function Header() {
 
-    const Stylesheader = styled.header`
-        background-color: #222;
-    `;
-
-    const Logo = styled(Link)`
-        color: #fff;
-        text-decoration: none;
-    `;
-
-    const Wrapper = styled.div`
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 0;
-    `;
-
-    const StyledNav = styled.nav`
-        display: flex;
-        gap: 15px;
-    `;
-
-    const NavLink = styled(Link)`
-        color: #aaa;
-        text-decoration: none;
-
-    `;
-
+    const {cartProducts} = useContext(CartContext)
 
     return (
         <Stylesheader>
@@ -64,7 +66,7 @@ export default function Header() {
                         <NavLink
                             href={'/cart'}
                         >
-                            Cart (0)
+                            Cart ({cartProducts.length})
                         </NavLink>
                     </StyledNav>
                 </Wrapper>
