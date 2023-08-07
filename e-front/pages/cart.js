@@ -6,7 +6,9 @@ import {useContext, useEffect, useState} from "react";
 import {CartContext} from "@/components/CartContext";
 import axios from "axios";
 import Table from "@/components/Table";
-import Input from "@/components/Input";
+import Input from "@/components/input";
+import WhiteBox from "@/components/Box";
+import Title from "@/components/Title";
 
 const ColumnsWrapper = styled.div`
   display: grid;
@@ -18,11 +20,7 @@ const ColumnsWrapper = styled.div`
   margin-top: 40px;
 `;
 
-const Box = styled.div`
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 30px;
-`;
+
 
 const ProductInfoCell = styled.td`
   padding: 10px 0;
@@ -123,10 +121,10 @@ export default function CartPage() {
         <Header />
         <Center>
           <ColumnsWrapper>
-            <Box>
+            <WhiteBox>
               <h1>Thanks for your order!</h1>
               <p>We will email you when your order will be sent.</p>
-            </Box>
+            </WhiteBox>
           </ColumnsWrapper>
         </Center>
       </>
@@ -137,8 +135,8 @@ export default function CartPage() {
       <Header />
       <Center>
         <ColumnsWrapper>
-          <Box>
-            <h2>Cart</h2>
+          <WhiteBox>
+            <Title>Cart</Title>
             {!cartProducts?.length && (
               <div>Your cart is empty</div>
             )}
@@ -182,9 +180,9 @@ export default function CartPage() {
                 </tbody>
               </Table>
             )}
-          </Box>
+          </WhiteBox>
           {!!cartProducts?.length && (
-            <Box>
+            <WhiteBox>
               <h2>Order information</h2>
               <Input type="text"
                      placeholder="Name"
@@ -222,7 +220,7 @@ export default function CartPage() {
                       onClick={goToPayment}>
                 Continue to payment
               </Button>
-            </Box>
+            </WhiteBox>
           )}
         </ColumnsWrapper>
       </Center>

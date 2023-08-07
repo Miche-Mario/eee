@@ -16,6 +16,7 @@ export default function OrdePage() {
                 <thead>
                     <tr>
                         <th>Date</th>
+                        <th>Paid</th>
                         <th>Receipient</th>
                         <th>Products</th>
                     </tr>
@@ -25,6 +26,7 @@ export default function OrdePage() {
                         orders.map((order) => (
                             <tr>
                                 <td>{order.createdAt.replace('T', ' ').substring(0, 19)}</td>
+                                <td className={order.paid? 'text-green-600' : 'text-red-500'}>{order.paid ? 'YES' : 'NO'}</td>
                                 <td>
                                     {order.name} {order.email} <br/> 
                                     {order.city} {order.postalCode} {order.country}<br/>
