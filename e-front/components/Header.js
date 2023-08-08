@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Center from "./Center";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "./CartContext";
 import BarsIcon from "./icons/Bars";
 
@@ -13,8 +13,10 @@ const Stylesheader = styled.header`
 const Logo = styled(Link)`
     color: #fff;
     text-decoration: none;
+    position: relative;
+    z-index: 3;
 `;
-
+ 
 const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
@@ -22,12 +24,21 @@ const Wrapper = styled.div`
 `;
 
 const StyledNav = styled.nav`
-    display: block;
+    ${props => props.mobileNavigationActive ? `display: block;` : `display: none;`}
     gap: 15px;
     position: fixed;
-    top:50px;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 70px 20px 20px;
+    background-color: #222;
+ 
     @media screen and (min-width: 768px){
         display: flex;
+        position: static;
+        padding: 0;
+   
     }
 `;
 
@@ -35,6 +46,11 @@ const NavLink = styled(Link)`
     display: block;
     color: #aaa;
     text-decoration: none;
+    padding: 10px 0;
+    @media screen and (min-width: 768px){
+        padding: 0;
+   
+    }
 `;
 
 const NavButton = styled.button`
@@ -44,11 +60,16 @@ const NavButton = styled.button`
    border: 0;
    color: white;
    cursor: pointer;
+   position: relative;
+   z-index: 3;
+   @media screen and (min-width: 768px){
+        display: none;
+    }
 `;
 export default function Header() {
 
     const {cartProducts} = useContext(CartContext)
-
+    const [mobileNavigationActive, setMobileNavigationActive] = useState(false)
     return (
         <Stylesheader>
             <Center>
@@ -58,7 +79,7 @@ export default function Header() {
                     >
                         Ecommerce
                     </Logo>
-                    <StyledNav>
+                    <StyledNav mobileNavigationActive={mobileNavigationActive}>
                         <NavLink
                             href={'/'}
                         >
@@ -85,7 +106,7 @@ export default function Header() {
                             Cart ({cartProducts.length})
                         </NavLink>
                     </StyledNav>
-                    <NavButton>
+                    <NavButton onClick={() => setMobileNavigationActive(prev => !prev)}>
                         <BarsIcon/>
                     </NavButton>
                 </Wrapper>
