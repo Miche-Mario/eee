@@ -51,13 +51,10 @@ const PriceRow = styled.div`
 
 const Price = styled.div`
     font-size: 1rem;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    color: inherit;
+    font-weight: 400;
     text-align: right;
-    text-decoration: none;
     @media screen and (min-width: 768px){
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         font-weight: 600;
         text-align: left;
     }`;
@@ -79,7 +76,7 @@ export default function ProductBox({_id, title, description, price, images}) {
                     <Price>
                         ${price}
                     </Price>
-                    <Button primary block  outline onClick={() => addProduct(_id)}>Add to cart - ${price}</Button>
+                    <Button primary block  outline onClick={() => addProduct(_id)}>Add to cart</Button>
                 </PriceRow>
             </ProductInfoBox>
         </ProductWrapper>
